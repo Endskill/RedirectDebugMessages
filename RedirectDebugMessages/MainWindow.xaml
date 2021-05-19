@@ -29,7 +29,7 @@
                 <ItemsControl ItemsSource="{Binding SelectedMod.Messages, UpdateSourceTrigger=PropertyChanged}">
                     <ItemsControl.ItemTemplate>
                         <DataTemplate>
-                            <TextBox IsReadOnly="True" Text="{Binding .}"/>
+                            <TextBox IsReadOnly="True" Text="{Binding Message}" Foreground="{Binding ForeGroundColor}" Background="{Binding BackGroundColor}"/>
                         </DataTemplate>
                     </ItemsControl.ItemTemplate>
                 </ItemsControl>

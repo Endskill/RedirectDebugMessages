@@ -56,7 +56,7 @@ namespace RedirectDebugOutput
         /// <returns>If the Message was sent Successfull</returns>
         public async Task<bool> SendMessageAsync(string message, string modName, UnityEngine.Color backGroundColor, UnityEngine.Color foreGroundColor)
         {
-            return await SendMessageInternalAsync(new PipeMessage(message, modName, UnityColorToSystemMedia(backGroundColor), UnityColorToSystemMedia(foreGroundColor)));
+            return await SendMessageInternalAsync(new PipeMessage(message, modName, backGroundColor, foreGroundColor));
         }
 
         /// <summary>
@@ -66,7 +66,7 @@ namespace RedirectDebugOutput
         /// <returns>If the Message was sent Successfull</returns>
         public async Task<bool> SendMessageAsync(string message, string modName, UnityEngine.Color backGroundColor)
         {
-            return await SendMessageInternalAsync(new PipeMessage(message, modName, UnityColorToSystemMedia(backGroundColor)));
+            return await SendMessageInternalAsync(new PipeMessage(message, modName, backGroundColor));
         }
 
         /// <summary>

@@ -20,14 +20,12 @@ namespace RedirectDebugMessages.Information
         /// </summary>
         public string ModName { get; set; }
 
-        /// <summary>
-        /// Gets or sets the Background Colour of this logged Message
-        /// </summary>
-        public Color ForeGroundColor { get; set; }
+        public byte ForeR { get; set; }
+        public byte ForeG { get; set; }
+        public byte ForeB { get; set; }
 
-        /// <summary>
-        /// Gets or sets the Background Colour of this logged Message
-        /// </summary>
-        public Color BackGroundColor { get; set; }
+        public byte BackR { get; set; }
+        public byte BackG { get; set; }
+        public byte BackB { get; set; }
     }
 }

@@ -4,6 +4,7 @@ using RedirectDebugMessages.MVVM;
 using System.Collections.ObjectModel;
 using System.Linq;
 using System.Threading.Tasks;
+using System.Windows.Media;
 using System.Windows.Threading;
 
 namespace RedirectDebugMessages
@@ -57,7 +58,9 @@ namespace RedirectDebugMessages
                     Mods.Add(correspondingMod);
                 }
 
-            (correspondingMod ?? Mods.First(it => it.ModName == message.ModName)).Messages.Add(new MessageObj(message.Message, message.ForeGroundColor, message.BackGroundColor));
+            (correspondingMod ?? Mods.First(it => it.ModName == message.ModName)).Messages.Add(new MessageObj(message.Message, 
+                Color.FromRgb(message.ForeR, message.ForeG, message.ForeB),
+                Color.FromRgb(message.BackR, message.BackG, message.BackB)));
             });
         }
     }

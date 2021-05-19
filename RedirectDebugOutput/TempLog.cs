@@ -4,35 +4,45 @@ namespace RedirectDebugOutput
 {
     public static class TempLog
     {
-        private static readonly ManualLogSource logger;
+        private const bool _DEBUG_ = false;
+
+        private static readonly ManualLogSource _logger;
         static TempLog()
         {
-            logger = new ManualLogSource(BepInExLoader.MODNAME);
-            Logger.Sources.Add(logger);
+            if (_DEBUG_)
+            {
+                _logger = new ManualLogSource(BepInExLoader.MODNAME);
+                Logger.Sources.Add(_logger);
+            }
         }
         public static void Verbose(object msg)
         {
-            logger.LogInfo(msg);
+            if(_DEBUG_)
+            _logger.LogInfo(msg);
         }
 
         public static void Debug(object msg)
         {
-            logger.LogDebug(msg);
+            if (_DEBUG_)
+                _logger.LogDebug(msg);
         }
 
         public static void Message(object msg)
         {
-            logger.LogMessage(msg);
+            if (_DEBUG_)
+                _logger.LogMessage(msg);
         }
 
         public static void Error(object msg)
         {
-            logger.LogError(msg);
+            if (_DEBUG_)
+                _logger.LogError(msg);
         }
 
         public static void Warn(object msg)
         {
-            logger.LogWarning(msg);
+            if (_DEBUG_)
+                _logger.LogWarning(msg);
         }
     }
 }
