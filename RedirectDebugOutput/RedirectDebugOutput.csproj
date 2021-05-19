@@ -1,0 +1,432 @@
+﻿<?xml version="1.0" encoding="utf-8"?>
+<Project ToolsVersion="15.0" xmlns="http://schemas.microsoft.com/developer/msbuild/2003">
+  <Import Project="$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props" Condition="Exists('$(MSBuildExtensionsPath)\$(MSBuildToolsVersion)\Microsoft.Common.props')" />
+  <PropertyGroup>
+    <Configuration Condition=" '$(Configuration)' == '' ">Debug</Configuration>
+    <Platform Condition=" '$(Platform)' == '' ">AnyCPU</Platform>
+    <ProjectGuid>{F771044D-2982-4852-9F06-E287096BB79C}</ProjectGuid>
+    <OutputType>Library</OutputType>
+    <AppDesignerFolder>Properties</AppDesignerFolder>
+    <RootNamespace>RedirectDebugOutput</RootNamespace>
+    <AssemblyName>RedirectDebugOutput</AssemblyName>
+    <TargetFrameworkVersion>v4.7.2</TargetFrameworkVersion>
+    <FileAlignment>512</FileAlignment>
+    <Deterministic>true</Deterministic>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Debug|AnyCPU' ">
+    <DebugSymbols>true</DebugSymbols>
+    <DebugType>full</DebugType>
+    <Optimize>false</Optimize>
+    <OutputPath>bin\Debug\</OutputPath>
+    <DefineConstants>DEBUG;TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <PropertyGroup Condition=" '$(Configuration)|$(Platform)' == 'Release|AnyCPU' ">
+    <DebugType>pdbonly</DebugType>
+    <Optimize>true</Optimize>
+    <OutputPath>bin\Release\</OutputPath>
+    <DefineConstants>TRACE</DefineConstants>
+    <ErrorReport>prompt</ErrorReport>
+    <WarningLevel>4</WarningLevel>
+  </PropertyGroup>
+  <ItemGroup>
+    <Compile Include="BepInExLoader.cs" />
+    <Compile Include="ExternalLogger.cs" />
+    <Compile Include="PipeMessage.cs" />
+    <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="TempLog.cs" />
+  </ItemGroup>
+  <ItemGroup>
+    <Folder Include="LiB\" />
+  </ItemGroup>
+  <ItemGroup>
+    <None Include="packages.config" />
+  </ItemGroup>
+  <ItemGroup>
+    <Reference Include="0Harmony">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\0Harmony.dll</HintPath>
+    </Reference>
+    <Reference Include="Addons-ASM">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Addons-ASM.dll</HintPath>
+    </Reference>
+    <Reference Include="AssemblyUnhollower">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\AssemblyUnhollower.dll</HintPath>
+    </Reference>
+    <Reference Include="AssetPrefabs-ASM">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\AssetPrefabs-ASM.dll</HintPath>
+    </Reference>
+    <Reference Include="Assets-ASM">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Assets-ASM.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx.Core">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\BepInEx.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx.IL2CPP">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\BepInEx.IL2CPP.dll</HintPath>
+    </Reference>
+    <Reference Include="BepInEx.Preloader.Core">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\BepInEx.Preloader.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="CellSound-ASM">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\CellSound-ASM.dll</HintPath>
+    </Reference>
+    <Reference Include="CommandSystem">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\CommandSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="DevConsoleCommands-ASM">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\DevConsoleCommands-ASM.dll</HintPath>
+    </Reference>
+    <Reference Include="DevConsoloe-ASM">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\DevConsoloe-ASM.dll</HintPath>
+    </Reference>
+    <Reference Include="Dissonance-integrations-ASM">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Dissonance-integrations-ASM.dll</HintPath>
+    </Reference>
+    <Reference Include="DissonanceVoip">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\DissonanceVoip.dll</HintPath>
+    </Reference>
+    <Reference Include="DropServerSDK-ASM">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\DropServerSDK-ASM.dll</HintPath>
+    </Reference>
+    <Reference Include="ExcludeInBuild-ASM">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\ExcludeInBuild-ASM.dll</HintPath>
+    </Reference>
+    <Reference Include="FluffyUnderware.DevTools">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\FluffyUnderware.DevTools.dll</HintPath>
+    </Reference>
+    <Reference Include="GameData-ASM">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\GameData-ASM.dll</HintPath>
+    </Reference>
+    <Reference Include="GlobalFramework-ASM">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\GlobalFramework-ASM.dll</HintPath>
+    </Reference>
+    <Reference Include="GUIX-ASM">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\GUIX-ASM.dll</HintPath>
+    </Reference>
+    <Reference Include="Iced">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Iced.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2Cpp.TlsAdapter">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Il2Cpp.TlsAdapter.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppDumper">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Il2CppDumper.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppMono.Security">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Il2CppMono.Security.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2Cppmscorlib">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Il2Cppmscorlib.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Il2CppSystem.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Configuration">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Il2CppSystem.Configuration.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Core">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Il2CppSystem.Core.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Diagnostics.StackTrace">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Il2CppSystem.Diagnostics.StackTrace.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Globalization.Extensions">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Il2CppSystem.Globalization.Extensions.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.IO.Compression">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Il2CppSystem.IO.Compression.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Net.Http">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Il2CppSystem.Net.Http.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Runtime.Serialization">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Il2CppSystem.Runtime.Serialization.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Xml">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Il2CppSystem.Xml.dll</HintPath>
+    </Reference>
+    <Reference Include="Il2CppSystem.Xml.Linq">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Il2CppSystem.Xml.Linq.dll</HintPath>
+    </Reference>
+    <Reference Include="LibTessDotNet">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\LibTessDotNet.dll</HintPath>
+    </Reference>
+    <Reference Include="LogUtils">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\LogUtils.dll</HintPath>
+    </Reference>
+    <Reference Include="Modules-ASM">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Modules-ASM.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Mono.Cecil.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Mdb">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Mono.Cecil.Mdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Pdb">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Mono.Cecil.Pdb.dll</HintPath>
+    </Reference>
+    <Reference Include="Mono.Cecil.Rocks">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Mono.Cecil.Rocks.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoMod.RuntimeDetour">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\MonoMod.RuntimeDetour.dll</HintPath>
+    </Reference>
+    <Reference Include="MonoMod.Utils">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\MonoMod.Utils.dll</HintPath>
+    </Reference>
+    <Reference Include="Newtonsoft.Json, Version=13.0.0.0, Culture=neutral, PublicKeyToken=30ad4fe6b2a6aeed, processorArchitecture=MSIL">
+      <HintPath>..\packages\Newtonsoft.Json.13.0.1\lib\net45\Newtonsoft.Json.dll</HintPath>
+    </Reference>
+    <Reference Include="PlayFab-ASM">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\PlayFab-ASM.dll</HintPath>
+    </Reference>
+    <Reference Include="Plugins-ASM">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Plugins-ASM.dll</HintPath>
+    </Reference>
+    <Reference Include="PresentationCore" />
+    <Reference Include="Prototype">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Prototype.dll</HintPath>
+    </Reference>
+    <Reference Include="Prototypes_ASM">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Prototypes_ASM.dll</HintPath>
+    </Reference>
+    <Reference Include="Resources-ASM">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Resources-ASM.dll</HintPath>
+    </Reference>
+    <Reference Include="RootMotion-ASM">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\RootMotion-ASM.dll</HintPath>
+    </Reference>
+    <Reference Include="Scenes-ASM">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Scenes-ASM.dll</HintPath>
+    </Reference>
+    <Reference Include="SemVer">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\SemVer.dll</HintPath>
+    </Reference>
+    <Reference Include="Shards-ASM">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Shards-ASM.dll</HintPath>
+    </Reference>
+    <Reference Include="SNet_ASM">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\SNet_ASM.dll</HintPath>
+    </Reference>
+    <Reference Include="StandardAssets-ASM">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\StandardAssets-ASM.dll</HintPath>
+    </Reference>
+    <Reference Include="SteamWorks_ASM">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\SteamWorks_ASM.dll</HintPath>
+    </Reference>
+    <Reference Include="System" />
+    <Reference Include="ToolBuddy.Curvy">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\ToolBuddy.Curvy.dll</HintPath>
+    </Reference>
+    <Reference Include="ToolBuddy.Curvy.Examples">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\ToolBuddy.Curvy.Examples.dll</HintPath>
+    </Reference>
+    <Reference Include="UnhollowerBaseLib">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnhollowerBaseLib.dll</HintPath>
+    </Reference>
+    <Reference Include="UnhollowerRuntimeLib">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnhollowerRuntimeLib.dll</HintPath>
+    </Reference>
+    <Reference Include="Unity.TextMeshPro">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Unity.TextMeshPro.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AccessibilityModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.AccessibilityModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AIModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.AIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AndroidJNIModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.AndroidJNIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AnimationModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.AnimationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ARModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.ARModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AssetBundleModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.AssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.AudioModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.AudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClothModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.ClothModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterInputModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.ClusterInputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ClusterRendererModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.ClusterRendererModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CoreModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.CoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.CrashReportingModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.CrashReportingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.DirectorModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.DirectorModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.DSPGraphModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.DSPGraphModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GameCenterModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.GameCenterModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.GridModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.GridModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.HotReloadModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.HotReloadModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ImageConversionModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.ImageConversionModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.IMGUIModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.IMGUIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputLegacyModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.InputLegacyModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.InputModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.InputModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.JSONSerializeModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.JSONSerializeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.LocalizationModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.LocalizationModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ParticleSystemModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.ParticleSystemModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PerformanceReportingModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.PerformanceReportingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.Physics2DModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.Physics2DModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.PhysicsModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.PhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ProfilerModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.ProfilerModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.ScreenCaptureModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.ScreenCaptureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SharedInternalsModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.SharedInternalsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteMaskModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.SpriteMaskModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SpriteShapeModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.SpriteShapeModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.StreamingModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.StreamingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SubstanceModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.SubstanceModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.SubsystemsModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.SubsystemsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.TerrainModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TerrainPhysicsModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.TerrainPhysicsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextCoreModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.TextCoreModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TextRenderingModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.TextRenderingModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TilemapModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.TilemapModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.TLSModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.TLSModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UI">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.UI.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIElementsModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.UIElementsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UIModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.UIModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UmbraModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.UmbraModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UNETModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.UNETModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityAnalyticsModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.UnityAnalyticsModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityConnectModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.UnityConnectModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityTestProtocolModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.UnityTestProtocolModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAssetBundleModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.UnityWebRequestAssetBundleModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestAudioModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.UnityWebRequestAudioModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.UnityWebRequestModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestTextureModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.UnityWebRequestTextureModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.UnityWebRequestWWWModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.UnityWebRequestWWWModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VehiclesModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.VehiclesModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VFXModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.VFXModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VideoModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.VideoModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.VRModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.VRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.WindModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.WindModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityEngine.XRModule">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityEngine.XRModule.dll</HintPath>
+    </Reference>
+    <Reference Include="UnityFileDebug-ASM">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\UnityFileDebug-ASM.dll</HintPath>
+    </Reference>
+    <Reference Include="Utils-ASM">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Utils-ASM.dll</HintPath>
+    </Reference>
+    <Reference Include="Wwise-ASM">
+      <HintPath>..\..\RandomizerSelector\RandomizerSelector\LiB\Wwise-ASM.dll</HintPath>
+    </Reference>
+  </ItemGroup>
+  <Import Project="$(MSBuildToolsPath)\Microsoft.CSharp.targets" />
+  <PropertyGroup>
+    <PostBuildEvent>COPY "$(TargetDir)$(TargetFileName)" "C:\Program Files (x86)\Steam\steamapps\common\GTFO\BepInEx\plugins\RedirectOutPutMessages\$(TargetFileName)</PostBuildEvent>
+  </PropertyGroup>
+</Project>
