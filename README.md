@@ -22,7 +22,3 @@ GetExternalLogger()?.SendMessageAsync("My Logging Message", "TabName");
 There are also some overloads for Color support like
 
 GetExternalLogger()?.SendMessageAsync("My Logging Message", "TabName", UnityEngine.Color.cyan, UnityEngine.Color.red);
-
-
-try getting the ExternalLogger Singleton by creating a little static TryGetLogger()
-which returns ExternalLogger.Current while being in a Try catch
