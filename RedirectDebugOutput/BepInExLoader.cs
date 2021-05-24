@@ -7,14 +7,14 @@ using System;
 using System.Diagnostics;
 using System.IO;
 using System.Reflection;
-using UnhollowerRuntimeLib;
-using UnityEngine;
 
 namespace RedirectDebugOutput
 {
     [BepInPlugin(GUID, MODNAME, VERSION)]
     public class BepInExLoader : BasePlugin
     {
+        private bool _isInjected = false;
+
         public const string
          MODNAME = "ExternalLogger",
          AUTHOR = "Endskill",
@@ -30,49 +30,64 @@ namespace RedirectDebugOutput
             BepInExLoader.NetworkingPcName = Config.Bind("Networking", "PcName", "LocalHost", "Where it should send the Messages (Laptop in the same LAN as an example)");
 
             new Harmony("ExternalLogger").PatchAll();
+
+            Start();
         }
 
-        [HarmonyPatch(typeof(CM_PageRundown_New), nameof(CM_PageRundown_New.PlaceRundown))]
-        public class PrepareInjection
+        public void Start()
         {
-            private static bool _injected = false;
-            private static Process _externalLogger;
-
-            [HarmonyPostfix]
-            public static void PostFix()
+            if (!_isInjected)
             {
-                //TempLog.Debug("PostFix");
-
-                if (!_injected)
+                if (IsActiveLocal.Value)
                 {
-                    if (IsActiveLocal.Value)
+                    if (!(Process.GetProcessesByName(Path.GetFileNameWithoutExtension("RedirectDebugMessages.exe")).Length > 0))
                     {
-                        //TempLog.Debug("External Logger is ACTIVE");
-
-                        Process[] processes = Process.GetProcessesByName(Path.GetFileNameWithoutExtension("RedirectDebugMessages.exe"));
-                        if (processes.Length > 0)
-                        {
-                            //TempLog.Debug("Killing existing Application");
-                            processes[0].Kill();
-                        }
-
-                        //TempLog.Debug($"Starting exe \n{Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"ExternalLogger\RedirectDebugMessages.exe")}");
-                        _externalLogger = Process.Start(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"ExternalLogger\RedirectDebugMessages.exe"));
-                        var gtfoProcess = Process.GetProcessesByName(Path.GetFileNameWithoutExtension("GTFO.exe"))[0];
-
-                        gtfoProcess.Exited += GtfoProcess_Exited;
-                    }
-                    else
-                    {
-                        TempLog.Debug("Somehow Deactivated o.o?");
+                        Process.Start(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"ExternalLogger\RedirectDebugMessages.exe"));
                     }
                 }
-            }
-
-            private static void GtfoProcess_Exited(object sender, EventArgs e)
-            {
-                _externalLogger.Kill();
+                else
+                {
+                    TempLog.Debug("Somehow Deactivated o.o?");
+                }
             }
         }
+
+        //[HarmonyPatch(typeof(CM_PageRundown_New), nameof(CM_PageRundown_New.PlaceRundown))]
+        //public class PrepareInjection
+        //{
+        //    private static bool _injected = false;
+        //    private static Process _externalLogger;
+
+        //    [HarmonyPostfix]
+        //    public static void PostFix()
+        //    {
+        //        if (!_injected)
+        //        {
+        //            if (IsActiveLocal.Value)
+        //            {
+        //                Process[] processes = Process.GetProcessesByName(Path.GetFileNameWithoutExtension("RedirectDebugMessages.exe"));
+        //                if (processes.Length > 0)
+        //                {
+        //                    processes[0].Kill();
+        //                }
+
+        //                //TempLog.Debug($"Starting exe \n{Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"ExternalLogger\RedirectDebugMessages.exe")}");
+        //                _externalLogger = Process.Start(Path.Combine(Path.GetDirectoryName(Assembly.GetExecutingAssembly().Location), @"ExternalLogger\RedirectDebugMessages.exe"));
+        //                var gtfoProcess = Process.GetProcessesByName(Path.GetFileNameWithoutExtension("GTFO.exe"))[0];
+
+        //                gtfoProcess.Exited += GtfoProcess_Exited;
+        //            }
+        //            else
+        //            {
+        //                TempLog.Debug("Somehow Deactivated o.o?");
+        //            }
+        //        }
+        //    }
+
+        //    private static void GtfoProcess_Exited(object sender, EventArgs e)
+        //    {
+        //        _externalLogger.Kill();
+        //    }
+        //}
     }
 }
